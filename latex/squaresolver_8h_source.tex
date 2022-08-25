@@ -1,0 +1,129 @@
+\hypertarget{squaresolver_8h_source}{}\doxysection{squaresolver.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#define INF\_ROOTS -\/1}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define ASSERT(cond) \(\backslash\)}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{    if (!(cond))\(\backslash\)}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{        printf("{}\(\backslash\)tError in line \%d\(\backslash\)n\(\backslash\)tof the file \%s\(\backslash\)n\(\backslash\)tcondinion (\%s) is false\(\backslash\)n"{}}, \_\_LINE\_\_, \_\_FILE\_\_, \#cond);}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{10 \textcolor{keywordtype}{int}  Eps\_Comp(\textcolor{keywordtype}{double} a, \textcolor{keywordtype}{double} b);                                          \textcolor{comment}{/* Сравнение чисел с точностью до эпсилон*/}}
+\DoxyCodeLine{11 \textcolor{keywordtype}{void} Print\_Square\_Problem(\textcolor{keywordtype}{double} a, \textcolor{keywordtype}{double} b, \textcolor{keywordtype}{double} c);                    \textcolor{comment}{/* Вывод квадратного уравнения*/}}
+\DoxyCodeLine{12 \textcolor{keywordtype}{int}  Solve\_Square(\textcolor{keywordtype}{double} a, \textcolor{keywordtype}{double} b, \textcolor{keywordtype}{double} c, \textcolor{keywordtype}{double}* x1, \textcolor{keywordtype}{double}* x2);    \textcolor{comment}{/* Расчет решений квадратного уравнения*/}}
+\DoxyCodeLine{13 \textcolor{keywordtype}{void} Print\_Linear\_Problem(\textcolor{keywordtype}{double} b, \textcolor{keywordtype}{double} c);                              \textcolor{comment}{/* Вывод линейного уравнения*/}}
+\DoxyCodeLine{14 \textcolor{keywordtype}{void} Reduce\_To\_0(\textcolor{keywordtype}{double}* x);                                                \textcolor{comment}{/* Функция, приводящая ответ -\/0 к 0*/}}
+\DoxyCodeLine{15 \textcolor{keywordtype}{void} TestSquare();}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keywordtype}{void} TestSquare()}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20     \textcolor{keywordtype}{double} x1 = 0, x2 = 0;}
+\DoxyCodeLine{21     \textcolor{keywordtype}{int} nRoots = Solve\_Square(1, 0, -\/4, \&x1, \&x2);}
+\DoxyCodeLine{22     ASSERT(nRoots == 2 \&\& Eps\_Comp(x1, -\/2) \&\& Eps\_Comp(x2, 2));}
+\DoxyCodeLine{23 \}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{keywordtype}{int} Eps\_Comp(\textcolor{keywordtype}{double} a, \textcolor{keywordtype}{double} b) \{}
+\DoxyCodeLine{27     \textcolor{keywordflow}{if} (fabs(a -\/ b) <= 0.00001) \{}
+\DoxyCodeLine{28         \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{29     \}}
+\DoxyCodeLine{30     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{31 \}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{keywordtype}{void} Print\_Square\_Problem(\textcolor{keywordtype}{double} a, \textcolor{keywordtype}{double} b, \textcolor{keywordtype}{double} c) \{}
+\DoxyCodeLine{35     \textcolor{keywordflow}{if} (Eps\_Comp(a, 1)) \{}
+\DoxyCodeLine{36         printf(\textcolor{stringliteral}{"{}x\string^2"{}});}
+\DoxyCodeLine{37     \}}
+\DoxyCodeLine{38     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (Eps\_Comp(a, -\/1)) \{}
+\DoxyCodeLine{39         printf(\textcolor{stringliteral}{"{}-\/x\string^2"{}});}
+\DoxyCodeLine{40     \}}
+\DoxyCodeLine{41     \textcolor{keywordflow}{else} printf(\textcolor{stringliteral}{"{}\%gx\string^2"{}}, a);}
+\DoxyCodeLine{42     \textcolor{keywordflow}{if} (Eps\_Comp(b, 1)) \{}
+\DoxyCodeLine{43         printf(\textcolor{stringliteral}{"{} + x"{}});}
+\DoxyCodeLine{44     \}}
+\DoxyCodeLine{45     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (Eps\_Comp(b, -\/1)) \{}
+\DoxyCodeLine{46         printf(\textcolor{stringliteral}{"{} -\/ x"{}});}
+\DoxyCodeLine{47     \}}
+\DoxyCodeLine{48     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (b < 0) \{}
+\DoxyCodeLine{49         printf(\textcolor{stringliteral}{"{} -\/ \%gx"{}}, -\/b);}
+\DoxyCodeLine{50     \}}
+\DoxyCodeLine{51     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!Eps\_Comp(b, 0)) \{}
+\DoxyCodeLine{52         printf(\textcolor{stringliteral}{"{} + \%gx"{}}, b);}
+\DoxyCodeLine{53     \}}
+\DoxyCodeLine{54     \textcolor{keywordflow}{if} (Eps\_Comp(c, -\/1)) \{}
+\DoxyCodeLine{55         printf(\textcolor{stringliteral}{"{} -\/ 1"{}});}
+\DoxyCodeLine{56     \}}
+\DoxyCodeLine{57     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (c < 0) \{}
+\DoxyCodeLine{58         printf(\textcolor{stringliteral}{"{} -\/ \%g"{}}, -\/c);}
+\DoxyCodeLine{59     \}}
+\DoxyCodeLine{60     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!Eps\_Comp(c, 0)) \{}
+\DoxyCodeLine{61         printf(\textcolor{stringliteral}{"{} + \%g"{}}, c);}
+\DoxyCodeLine{62     \}}
+\DoxyCodeLine{63     printf(\textcolor{stringliteral}{"{} = 0"{}});}
+\DoxyCodeLine{64 \}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 \textcolor{keywordtype}{int} Solve\_Square(\textcolor{keywordtype}{double} a, \textcolor{keywordtype}{double} b, \textcolor{keywordtype}{double} c, \textcolor{keywordtype}{double}* x1, \textcolor{keywordtype}{double}* x2) \{}
+\DoxyCodeLine{68     \textcolor{keywordtype}{double} D = b * b -\/ 4 * a * c;}
+\DoxyCodeLine{69     \textcolor{keywordtype}{double} sqd = sqrt(D);}
+\DoxyCodeLine{70     \textcolor{keywordflow}{if} (Eps\_Comp(a, 0)) \{}
+\DoxyCodeLine{71         Print\_Linear\_Problem(b, c);}
+\DoxyCodeLine{72         \textcolor{keywordflow}{if} (Eps\_Comp(b, 0))\{}
+\DoxyCodeLine{73             \textcolor{keywordflow}{if} (Eps\_Comp(c, 0))\{}
+\DoxyCodeLine{74                 \textcolor{keywordflow}{return} INF\_ROOTS;}
+\DoxyCodeLine{75             \}}
+\DoxyCodeLine{76             \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{77                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{78             \}}
+\DoxyCodeLine{79         \}}
+\DoxyCodeLine{80         \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{81             *x1 = -\/c / b;}
+\DoxyCodeLine{82             \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{83         \}}
+\DoxyCodeLine{84     \}}
+\DoxyCodeLine{85     Print\_Square\_Problem(a, b, c);}
+\DoxyCodeLine{86     \textcolor{keywordflow}{if} (Eps\_Comp(D, 0)) \{}
+\DoxyCodeLine{87         *x1 = -\/b / (2 * a);}
+\DoxyCodeLine{88         \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{89     \}}
+\DoxyCodeLine{90     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (D > 0) \{}
+\DoxyCodeLine{91         *x1 = (-\/b -\/ sqd) / (2 * a);}
+\DoxyCodeLine{92         *x2 = (-\/b + sqd) / (2 * a);}
+\DoxyCodeLine{93         \textcolor{keywordflow}{return} 2;}
+\DoxyCodeLine{94     \}}
+\DoxyCodeLine{95     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (D < 0) \{}
+\DoxyCodeLine{96         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{97     \}}
+\DoxyCodeLine{98 \}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 \textcolor{keywordtype}{void} Print\_Linear\_Problem(\textcolor{keywordtype}{double} b, \textcolor{keywordtype}{double} c) \{}
+\DoxyCodeLine{102     \textcolor{keywordflow}{if} (Eps\_Comp(b, -\/1)) \{}
+\DoxyCodeLine{103         printf(\textcolor{stringliteral}{"{}-\/x"{}});}
+\DoxyCodeLine{104     \}}
+\DoxyCodeLine{105     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (Eps\_Comp(b, 1)) \{}
+\DoxyCodeLine{106         printf(\textcolor{stringliteral}{"{}x"{}});}
+\DoxyCodeLine{107     \}}
+\DoxyCodeLine{108     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{109         printf(\textcolor{stringliteral}{"{}\%gx"{}}, b);}
+\DoxyCodeLine{110     \}}
+\DoxyCodeLine{111     \textcolor{keywordflow}{if} (Eps\_Comp(c, -\/1)) \{}
+\DoxyCodeLine{112         printf(\textcolor{stringliteral}{"{} -\/ 1"{}});}
+\DoxyCodeLine{113     \}}
+\DoxyCodeLine{114     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (c < 0) \{}
+\DoxyCodeLine{115         printf(\textcolor{stringliteral}{"{} -\/ \%g"{}}, -\/c);}
+\DoxyCodeLine{116     \}}
+\DoxyCodeLine{117     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!Eps\_Comp(c, 0)) \{}
+\DoxyCodeLine{118         printf(\textcolor{stringliteral}{"{} + \%g"{}}, c);}
+\DoxyCodeLine{119     \}}
+\DoxyCodeLine{120     printf(\textcolor{stringliteral}{"{} = 0"{}});}
+\DoxyCodeLine{121 \}}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124 \textcolor{keywordtype}{void} Reduce\_To\_0(\textcolor{keywordtype}{double}* x) \{}
+\DoxyCodeLine{125     \textcolor{keywordflow}{if} (Eps\_Comp(*x, 0)) \{}
+\DoxyCodeLine{126         *x = 0;}
+\DoxyCodeLine{127     \}}
+\DoxyCodeLine{128 \}}
+
+\end{DoxyCode}
