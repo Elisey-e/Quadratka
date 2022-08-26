@@ -71,6 +71,16 @@ void Test_Square(const char* in_file_name, const char* out_file_name)
     FILE *out_file;                     /* Выходной файл с результатами */
     out_file = fopen(out_file_name, "w");
 
+	if (!in_file){
+		printf("Входной файл не обнаружен, будет использован файл по умолчанию\n");
+		in_file = fopen("tests.txt", "r");
+	}
+
+	if (!out_file){
+		printf("Выходной файл не обнаружен, будет использован файл по умолчанию\n");
+		out_file = fopen("results.txt", "w");
+	}
+
     fprintf(out_file, "Results:\n\n");
 
     HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
