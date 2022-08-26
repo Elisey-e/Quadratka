@@ -44,7 +44,8 @@ void Print_Square_Problem(double a, double b, double c);
 	\param[in] to_print Печатать ли исходное уравнение
 	\return Количество решений уравнения, INF_ROOTS если корней бесконечно много
 */
-int  Solve_Square(double a, double b, double c, double* x1, double* x2, int to_print);
+
+int  Solve_Square(double indices[], double* x1, double* x2, int to_print);
 
 
 /*!
@@ -64,13 +65,25 @@ void Reduce_To_0(double* x);
 /*!
 	\brief Функция, тестирующая функцию Solve_Square
 */
-void TestSquare();
+void Test_Square(const char* in_file_name_ptr, const char* out_file_name_ptr);
 
 
 /*!
-	\brief Функция, производящая вывод в поток и файл информацию 
+	\brief Функция, производящая вывод в поток и файл информацию
+	\param[in] x1, x2 Проверяемые корни уравнения
+	\param[in] r_x1, r_x2 Истинные корни уравнения
+	\param[in] indices[] Массив индексов уравнения
+	\param[in] i Номер теста
+	\param[in] nRoots, Real_nRoots Проверяемое и истинное число корней уравнения
+	\param[in] *out_file Ссылка на файл с результатом
 */
-void Print_In_Cons(double x1, double r_x1, double x2, double r_x2, double a, double b, double c, int i, int nRoots, int Real_nRoots, FILE *out_file);
+void Print_In_Cons(double x1, double r_x1, double x2, double r_x2, double indices[], int i, int nRoots, int Real_nRoots, FILE *out_file);
+
+
+/*!
+	\brief Функция, очищающая входной поток
+*/
+void Clear_Sdin();
 
 
 #endif

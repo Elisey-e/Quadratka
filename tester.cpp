@@ -1,7 +1,3 @@
-/*!
-\file
-\brief Файл с функцией TestSquare, тестирующей функцию Solve_Square
-*/
 
 
 #include <stdio.h>

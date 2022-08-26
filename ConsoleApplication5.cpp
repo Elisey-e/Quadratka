@@ -1,19 +1,34 @@
-﻿/*!
+﻿#include <stdio.h>
+#include "squaresolver.h"
+
+
+/*!
 \file
 \brief Главный файл проекта с функцией main
 \authors Zhdanov_EA
 */
 
 
-#include <stdio.h>
-#include "squaresolver.h"
+#define TEST
 
 
-/*!
-	\brief Главная функция
-*/
-int main()
+int main(int argc, const char* argv[])
 {
-	//Derive_Solution();
-	TestSquare();
+#ifdef TEST
+	const char in_file_name[]  = "tests.txt";
+	const char out_file_name[] = "results.txt";
+	
+	switch (argc){
+	case 2:
+		Test_Square(argv[1], out_file_name);
+		break;
+	case 3:
+		Test_Square(argv[1], argv[2]);
+		break;
+	default:
+		Test_Square(in_file_name, out_file_name);
+	}
+#else
+	Derive_Solution();
+#endif
 }
