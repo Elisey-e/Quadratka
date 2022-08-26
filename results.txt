@@ -1,0 +1,21 @@
+Results:
+
+Test 1 failed:
+expected -1 roots
+got	 0 roots
+coefficients: (a = 1, b = 1, c = 1)
+
+Test 2 failed:
+expected x = -2.000000 root
+got	 x = -1.000000 root
+coefficients: (a = 1, b = 2, c = 1)
+
+Test 3 passed
+
+Test 4 failed:
+expected x1 = -3.805630; x2 = 0.319918
+got	 x1 = -2.805632; x2 = 0.319918
+coefficients: (a = 3.5, b = 8.7, c = -3.1415)
+
+Test 5 passed
+

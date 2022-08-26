@@ -1,3 +1,5 @@
+#ifndef SQUARESOLVER_H
+#define SQUARESOLVER_H
 /*!
 \file
 \brief Заголовочный файл с описанием функций
@@ -23,6 +25,12 @@ int  Eps_Comp(double a, double b);
 
 
 /*!
+	\brief Функция, выводящая интерфейс для решения квадратного уравнения
+*/
+void Derive_Solution();
+
+
+/*!
 	\brief Функция, которая распечатывает квадратное уравнение с подставленными числовыми коэффициентами
 	\param[in] a, b, c Три числа - коэффициента уравнения
 */
@@ -31,10 +39,12 @@ void Print_Square_Problem(double a, double b, double c);
 
 /*!
 	\brief Функция, которая решает квадратное уравнение, линейное в случае равенства коэффициента при x^2 нулю
-	\param[in] a, b, c Три числа - коэффициента уравнения и две ссылки на его корни
+	\param[in] a, b, c Три числа - коэффициента уравнения
+	\param[in] x1, x2 Две ссылки на корни уравнения
+	\param[in] to_print Печатать ли исходное уравнение
 	\return Количество решений уравнения, INF_ROOTS если корней бесконечно много
 */
-int  Solve_Square(double a, double b, double c, double* x1, double* x2);
+int  Solve_Square(double a, double b, double c, double* x1, double* x2, int to_print);
 
 
 /*!
@@ -53,6 +63,14 @@ void Reduce_To_0(double* x);
 
 /*!
 	\brief Функция, тестирующая функцию Solve_Square
-	Обычный дочерний класс, который отнаследован от ранее созданного класса Parent
 */
 void TestSquare();
+
+
+/*!
+	\brief Функция, производящая вывод в поток и файл информацию 
+*/
+void Print_In_Cons(double x1, double r_x1, double x2, double r_x2, double a, double b, double c, int i, int nRoots, int Real_nRoots, FILE *out_file);
+
+
+#endif
