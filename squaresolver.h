@@ -9,7 +9,6 @@
 */
 
 
-
 #define INF_ROOTS -1
 #define ASSERT(cond) \
 	if (!(cond))\
@@ -44,7 +43,6 @@ void Print_Square_Problem(double a, double b, double c);
 	\param[in] to_print Печатать ли исходное уравнение
 	\return Количество решений уравнения, INF_ROOTS если корней бесконечно много
 */
-
 int  Solve_Square(double indices[], double* x1, double* x2, int to_print);
 
 
@@ -84,6 +82,15 @@ void Print_In_Cons(double x1, double r_x1, double x2, double r_x2, double indice
 	\brief Функция, очищающая входной поток
 */
 void Clear_Sdin();
+
+
+/*!
+	\brief Функция, производящая вывод в поток и файл информацию
+	\param[in] *x1 Ссылка на корень уравнения
+	\param[in] indices Массив индексов уравнения
+	\param[in] to_print Печатать ли уравнение
+*/
+int Solve_Linear(double indices[], double* x1, int to_print);
 
 
 #endif

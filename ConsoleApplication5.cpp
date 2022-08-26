@@ -6,7 +6,6 @@
 \file
 \brief Главный файл проекта с функцией main
 \authors Zhdanov_EA
- 
 */
 
 
@@ -23,7 +22,7 @@ int main(int argc, const char* argv[])
 	const char in_file_name[]  = "tests.txt";
 	const char out_file_name[] = "results.txt";
 
-	switch (argc){
+	switch (argc) {
 	case 2:
 		Test_Square(argv[1], out_file_name);
 		break;
