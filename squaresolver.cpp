@@ -4,13 +4,10 @@
 Данный файл содержит в себе основные функций, используемые при решении квадратного уравнения
 */
 
-
-#include <stdio.h>
-#include <math.h>
 #include "squaresolver.h"
 
 
-double Epsilon = 1e-5;
+const double Epsilon = 1e-5;
 
 
 void Clear_Sdin()
@@ -57,18 +54,23 @@ void Derive_Solution()
 
 int Eps_Comp(double a, double b)
 {
+	assert(!isnan(a));
+	assert(!isnan(b));
 	return (fabs(a - b) <= Epsilon);
 }
 
 void Print_Square_Problem(double a, double b, double c)
 {
+	assert(!isnan(a));
+	assert(!isnan(b));
+	assert(!isnan(c));
 	if (      Eps_Comp(a, 1)) {
 		printf("x^2");
 	}
 	else if ( Eps_Comp(a, -1)) {
 		printf("-x^2");
 	}
-	else printf("%gx^2", a);
+	else printf("%.4gx^2", a);
 
 
 	if (      Eps_Comp(b, 1)) {
@@ -78,10 +80,10 @@ void Print_Square_Problem(double a, double b, double c)
 		printf(" - x");
 	}
 	else if (b < 0) {
-		printf(" - %gx", -b);
+		printf(" - %.4gx", -b);
 	}
 	else if (!Eps_Comp(b, 0)) {
-		printf(" + %gx", b);
+		printf(" + %.4gx", b);
 	}
 
 
@@ -89,10 +91,10 @@ void Print_Square_Problem(double a, double b, double c)
 		printf(" - 1");
 	}
 	else if (c < 0) {
-		printf(" - %g", -c);
+		printf(" - %.4g", -c);
 	}
 	else if (!Eps_Comp(c, 0)) {
-		printf(" + %g", c);
+		printf(" + %.4g", c);
 	}
 
 
@@ -101,6 +103,11 @@ void Print_Square_Problem(double a, double b, double c)
 
 int Solve_Square(double indices[], double* x1, double* x2, int to_print)
 {
+	assert(!isnan(to_print));
+
+	assert(		x1 != NULL);
+	assert(		x2 != NULL);
+	assert(indices != NULL);
     double a = indices[0];
     double b = indices[1];
     double c = indices[2];
@@ -131,9 +138,9 @@ int Solve_Square(double indices[], double* x1, double* x2, int to_print)
 		return 1;
 	}
 	else if (D > 0) {
-		double sqd = sqrt(D);
-		*x1 = (-b - sqd) / (2 * a);
-		*x2 = (-b + sqd) / (2 * a);
+		double sqrtd = sqrt(D);
+		*x1 = (-b - sqrtd) / (2 * a);
+		*x2 = (-b + sqrtd) / (2 * a);
 		return 2;
 	}
 	else if (D < 0) {
@@ -144,6 +151,8 @@ int Solve_Square(double indices[], double* x1, double* x2, int to_print)
 
 void Print_Linear_Problem(double b, double c)
 {
+	assert(!isnan(b));
+	assert(!isnan(c));
 	if (Eps_Comp(b, -1)) {
 		printf("-x");
 	}
@@ -151,7 +160,7 @@ void Print_Linear_Problem(double b, double c)
 		printf("x");
 	}
 	else {
-		printf("%gx", b);
+		printf("%.4gx", b);
 	}
 
 
@@ -159,18 +168,19 @@ void Print_Linear_Problem(double b, double c)
 		printf(" - 1");
 	}
 	else if (c < 0) {
-		printf(" - %g", -c);
+		printf(" - %.4g", -c);
 	}
 	else if (!Eps_Comp(c, 0)) {
-		printf(" + %g", c);
+		printf(" + %.4g", c);
 	}
 
-	
+
 	printf(" = 0");
 }
 
 void Reduce_To_0(double* x)
 {
+	assert(x != NULL);
 	if (Eps_Comp(*x, 0)) {
 		*x = 0;
 	}
@@ -178,6 +188,9 @@ void Reduce_To_0(double* x)
 
 int Solve_Linear(double indices[], double* x1, int to_print)
 {
+	assert(x1 != NULL);
+	assert(!isnan(to_print));
+	assert(indices != NULL);
     double b = indices[0];
     double c = indices[1];
     if (to_print) {

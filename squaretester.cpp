@@ -5,17 +5,19 @@
 */
 
 
-#include <stdio.h>
 #include "squaresolver.h"
 #include <windows.h>
 
 
 void Test_Square(const char* in_file_name, const char* out_file_name)
 {
-    double indices[3] = {0, 0, 0};						/* Коэффициенты уравнения */
-	double   x1 = 0,   x2 = 0;							/* Решения функции Solve_Square */
-    double r_x1 = 0, r_x2 = 0;							/* Истинные корни */
-    int i = 0;											/* Номер теста */
+    assert(in_file_name != NULL);
+    assert(out_file_name != NULL);
+
+    double indices[3] = {0, 0, 0};				        /* Коэффициенты уравнения */
+	double   x1 = 0,   x2 = 0;		    	    		/* Решения функции Solve_Square */
+    double r_x1 = 0, r_x2 = 0;				          	/* Истинные корни */
+    int i = 0;							   				/* Номер теста */
     int Real_nRoots = 0;								/* Истинное коливество корней */
 
     FILE *in_file  = fopen(in_file_name,  "r");			/* Выходной файл с результатами */
@@ -58,11 +60,23 @@ void Test_Square(const char* in_file_name, const char* out_file_name)
     SetConsoleTextAttribute(handle, FOREGROUND_BLUE);
 
     fclose(in_file);
-	// fcl
+    fclose(out_file);
 }
 
 void Print_In_Cons(double x1, double r_x1, double x2, double r_x2, double indices[], int i, int nRoots, int Real_nRoots, FILE *out_file)
 {
+    assert(!isnan(x1));
+    assert(!isnan(x2));
+    assert(!isnan(r_x1));
+    assert(!isnan(r_x2));
+
+    assert(!isnan(i));
+    assert(!isnan(nRoots));
+    assert(!isnan(Real_nRoots));
+    
+    assert(indices != NULL);
+    assert(out_file != NULL);
+
     double a = indices[0];
     double b = indices[1];
     double c = indices[2];
@@ -80,8 +94,8 @@ void Print_In_Cons(double x1, double r_x1, double x2, double r_x2, double indice
     else if (!Eps_Comp(x1, r_x1) || !Eps_Comp(x2, r_x2)) {
         switch (nRoots){
         case 2:
-            printf(           "Test %d failed:\nexpected x1 = %.3lf; x2 = %.3lf roots\ngot\t x1 = %.3lf; x2 = %.3lf roots\nequation ", i, r_x1, r_x2, x1, x2);
-            fprintf(out_file, "Test %d failed:\nexpected x1 = %.3lf; x2 = %.3lf\ngot\t x1 = %.3lf; x2 = %.3lf\ncoefficients: (a = %g, b = %g, c = %g)", i, r_x1, r_x2, x1, x2, a, b, c);
+            printf(           "Test %d failed:\nexpected x1 = %.4lf; x2 = %.4lf roots\ngot\t x1 = %.4lf; x2 = %.4lf roots\nequation ", i, r_x1, r_x2, x1, x2);
+            fprintf(out_file, "Test %d failed:\nexpected x1 = %.4lf; x2 = %.4lf roots\ngot\t x1 = %.4lf; x2 = %.4lf roots\ncoefficients: (a = %g, b = %g, c = %g)", i, r_x1, r_x2, x1, x2, a, b, c);
 
             nRoots = Solve_Square(indices, &x1, &x2, 1);
 
@@ -90,8 +104,8 @@ void Print_In_Cons(double x1, double r_x1, double x2, double r_x2, double indice
 
             break;
         case 1:
-            printf(           "Test %d failed:\nexpected x = %.3lf root\ngot\t x = %.3lf root\nequation ", i, r_x1, x1);
-            fprintf(out_file, "Test %d failed:\nexpected x = %.3lf root\ngot\t x = %.3lf root\ncoefficients: (a = %g, b = %g, c = %g)", i, r_x1, x1, a, b, c);
+            printf(           "Test %d failed:\nexpected x = %.4lf root\ngot\t x = %.4lf root\nequation ", i, r_x1, x1);
+            fprintf(out_file, "Test %d failed:\nexpected x = %.4lf root\ngot\t x = %.4lf root\ncoefficients: (a = %g, b = %g, c = %g)", i, r_x1, x1, a, b, c);
             
             nRoots = Solve_Square(indices, &x1, &x2, 1);
 

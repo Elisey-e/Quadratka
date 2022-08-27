@@ -8,8 +8,15 @@
 функций, используемых при решении квадратного уравнения
 */
 
+#include <assert.h>
+#include <stdio.h>
+#include <math.h>
 
-#define INF_ROOTS -1
+enum ROOTS_NUMBER {
+	INF_ROOTS = -1,
+	NO_ROOTS  =  0,
+};
+
 #define ASSERT(cond) \
 	if (!(cond))\
 		printf("\tError in line %d\n\tof the file %s\n\tcondinion (%s) is false\n", __LINE__, __FILE__, #cond);

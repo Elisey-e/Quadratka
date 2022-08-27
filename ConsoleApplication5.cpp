@@ -1,5 +1,4 @@
-﻿#include <stdio.h>
-#include "squaresolver.h"
+﻿#include "squaresolver.h"
 
 
 /*!
@@ -33,6 +32,7 @@ int main(int argc, const char* argv[])
 		Test_Square(in_file_name, out_file_name);
 	}
 #else
+	
 	Derive_Solution();
 #endif
 }
